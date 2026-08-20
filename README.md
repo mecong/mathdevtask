@@ -1,6 +1,6 @@
 # High-Performance Java Slot Game Simulator & Mathematical Validator
 
-A high-performance, modular, and extensible 3x3 slot machine simulation engine and mathematical verification tool built in Java 21+ with Virtual Threads, Lombok, and Spock Framework.
+A high-performance, modular, and extensible 3x3 slot machine simulation engine and mathematical verification tool built in Java 25+ with Virtual Threads, Lombok, and Spock Framework.
 
 ---
 
@@ -144,7 +144,7 @@ src/main/java/com/rubyplay/slot/
 ## 5. Build, Test & Run Instructions
 
 ### Prerequisites
-- **Java 21+** (e.g. OpenJDK 21, 22, 25, 26)
+- **Java 25+** (e.g. OpenJDK 25, 26)
 - **Maven 3.8+**
 
 ### Building and Testing with Spock

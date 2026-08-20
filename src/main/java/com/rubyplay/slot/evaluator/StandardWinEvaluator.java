@@ -48,7 +48,7 @@ public class StandardWinEvaluator implements WinEvaluator {
             LineWin win = evaluateLine(payline.getId(), s0, s1, s2, payTable);
             if (win != null) {
                 lineWins.add(win);
-                totalWin += win.getPayout();
+                totalWin += win.payout();
             }
         }
 

@@ -65,15 +65,15 @@ public class SimulationStatsAccumulator {
         recordRound(winAmount, betAmount);
 
         for (LineWin lineWin : outcome.getLineWins()) {
-            int ordinal = lineWin.getWinningSymbol().ordinal();
+            int ordinal = lineWin.winningSymbol().ordinal();
             symbolHits[ordinal]++;
-            symbolPayouts[ordinal] += lineWin.getPayout();
+            symbolPayouts[ordinal] += lineWin.payout();
         }
 
         outcome.getScatterWin().ifPresent(scatterWin -> {
-            int ordinal = scatterWin.getSymbol().ordinal();
+            int ordinal = scatterWin.symbol().ordinal();
             symbolHits[ordinal]++;
-            symbolPayouts[ordinal] += scatterWin.getPayout();
+            symbolPayouts[ordinal] += scatterWin.payout();
         });
     }
 

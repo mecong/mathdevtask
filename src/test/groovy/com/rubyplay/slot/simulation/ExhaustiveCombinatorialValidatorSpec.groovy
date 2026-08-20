@@ -29,20 +29,20 @@ class ExhaustiveCombinatorialValidatorSpec extends Specification {
         Math.abs(report.getStandardDeviationBetUnits() - 4.867627) < 0.0001
 
         and: "exact symbol hits match theoretical combinations"
-        def symbolStats = report.getSymbolBreakdowns().collectEntries { [it.getSymbol(), it] }
+        def symbolStats = report.getSymbolBreakdowns().collectEntries { [it.symbol(), it] }
 
         // Line hits across 5 paylines (matches sheet hits * 5)
-        symbolStats[Symbol.W1].getHitCount() == 5L
-        symbolStats[Symbol.H1].getHitCount() == 85L
-        symbolStats[Symbol.H2].getHitCount() == 745L
-        symbolStats[Symbol.H3].getHitCount() == 5495L
-        symbolStats[Symbol.L1].getHitCount() == 2425L
-        symbolStats[Symbol.L2].getHitCount() == 11755L
-        symbolStats[Symbol.L3].getHitCount() == 7015L
-        symbolStats[Symbol.L4].getHitCount() == 2695L
+        symbolStats[Symbol.W1].hitCount() == 5L
+        symbolStats[Symbol.H1].hitCount() == 85L
+        symbolStats[Symbol.H2].hitCount() == 745L
+        symbolStats[Symbol.H3].hitCount() == 5495L
+        symbolStats[Symbol.L1].hitCount() == 2425L
+        symbolStats[Symbol.L2].hitCount() == 11755L
+        symbolStats[Symbol.L3].hitCount() == 7015L
+        symbolStats[Symbol.L4].hitCount() == 2695L
 
         // Scatter hits: 75 combinations * 27 positions = 2025
-        symbolStats[Symbol.SCA].getHitCount() == 2025L
-        Math.abs(symbolStats[Symbol.SCA].getReturnPercentage() - 21.20) < 0.01
+        symbolStats[Symbol.SCA].hitCount() == 2025L
+        Math.abs(symbolStats[Symbol.SCA].returnPercentage() - 21.20) < 0.01
     }
 }

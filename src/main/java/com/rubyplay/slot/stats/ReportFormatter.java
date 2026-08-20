@@ -58,7 +58,7 @@ public class ReportFormatter {
         sb.append(THIN_LINE).append("\n");
 
         if (report.getSymbolBreakdowns() != null && !report.getSymbolBreakdowns().isEmpty()) {
-            boolean hasNonZeroHits = report.getSymbolBreakdowns().stream().anyMatch(s -> s.getHitCount() > 0);
+            boolean hasNonZeroHits = report.getSymbolBreakdowns().stream().anyMatch(s -> s.hitCount() > 0);
             if (hasNonZeroHits) {
                 sb.append(String.format(" %-6s | %-12s | %-12s | %-15s | %-12s | %-10s\n",
                         "Symbol", "Display Name", "Hits", "Probability", "Total Payout", "Return %"));
@@ -66,12 +66,12 @@ public class ReportFormatter {
 
                 for (SymbolStat stat : report.getSymbolBreakdowns()) {
                     sb.append(String.format(" %-6s | %-12s | %-12s | %-15.7e | %-12s | %6.2f%%\n",
-                            stat.getSymbol().getCode(),
-                            stat.getSymbol().getDisplayName(),
-                            intFormat.format(stat.getHitCount()),
-                            stat.getProbability(),
-                            intFormat.format(stat.getTotalPayout()),
-                            stat.getReturnPercentage()));
+                            stat.symbol().getCode(),
+                            stat.symbol().getDisplayName(),
+                            intFormat.format(stat.hitCount()),
+                            stat.probability(),
+                            intFormat.format(stat.totalPayout()),
+                            stat.returnPercentage()));
                 }
                 sb.append(THIN_LINE).append("\n");
             }

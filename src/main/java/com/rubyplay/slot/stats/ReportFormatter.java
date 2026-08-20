@@ -1,7 +1,6 @@
 package com.rubyplay.slot.stats;
 
-import lombok.AccessLevel;
-import lombok.experimental.FieldDefaults;
+import lombok.experimental.UtilityClass;
 
 import java.text.NumberFormat;
 import java.util.Locale;
@@ -9,7 +8,7 @@ import java.util.Locale;
 /**
  * Formats SimulationReport instances into human-readable ASCII tables and statistical summaries.
  */
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+@UtilityClass
 public class ReportFormatter {
 
     private static final String LINE = "================================================================================";
@@ -22,7 +21,7 @@ public class ReportFormatter {
      * @param title  header title
      * @return formatted string
      */
-    public String format(SimulationReport report, String title) {
+    public static String format(SimulationReport report, String title) {
         NumberFormat intFormat = NumberFormat.getNumberInstance(Locale.US);
         StringBuilder sb = new StringBuilder();
 

@@ -90,20 +90,19 @@ public class SlotSimulationCommand implements Callable<Integer> {
             }
 
             SlotEngine engine = new SlotEngine(gameConfig);
-            ReportFormatter formatter = new ReportFormatter();
 
             if (exactValidation) {
                 System.out.println("\nRunning Exhaustive Mathematical Validation...");
                 ExhaustiveCombinatorialValidator validator = new ExhaustiveCombinatorialValidator(engine);
                 SimulationReport exactReport = validator.validateAllCombinations();
-                System.out.println(formatter.format(exactReport, "EXHAUSTIVE THEORETICAL MATHEMATICAL REPORT"));
+                System.out.println(ReportFormatter.format(exactReport, "EXHAUSTIVE THEORETICAL MATHEMATICAL REPORT"));
             }
 
             if (rounds > 0) {
                 System.out.printf("\nExecuting Monte Carlo Simulation (%s rounds)...%n", String.format("%,d", rounds));
                 VirtualThreadMonteCarloSimulator simulator = new VirtualThreadMonteCarloSimulator(engine, properties);
                 SimulationReport simReport = simulator.runSimulation(rounds);
-                System.out.println(formatter.format(simReport, "MONTE CARLO SIMULATION STATISTICAL REPORT"));
+                System.out.println(ReportFormatter.format(simReport, "MONTE CARLO SIMULATION STATISTICAL REPORT"));
             }
 
             return 0;

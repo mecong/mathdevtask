@@ -5,6 +5,7 @@ import com.rubyplay.slot.model.PayTable;
 import com.rubyplay.slot.model.Payline;
 import com.rubyplay.slot.model.ReelStrip;
 import com.rubyplay.slot.model.Symbol;
+import lombok.experimental.UtilityClass;
 
 import java.util.ArrayList;
 import java.util.EnumMap;
@@ -16,7 +17,8 @@ import java.util.Map;
  * Factory creating the standard 3x3 Fruit Slot game configuration
  * matching the exact Rubyplay technical assessment math model.
  */
-public final class DefaultGameConfigFactory {
+@UtilityClass
+public class DefaultGameConfigFactory {
 
     private static final String[] REEL_0_CODES = {
             "L4", "L3", "L2", "SCA", "H2", "H2", "H2", "L1", "L1", "L1",
@@ -45,9 +47,6 @@ public final class DefaultGameConfigFactory {
             "H2", "H3", "H3", "H3", "L2", "L2", "L2", "L1", "L1", "SCA",
             "L2", "L2", "L2", "L1"
     };
-
-    private DefaultGameConfigFactory() {
-    }
 
     /**
      * Builds the default 3x3 game configuration.

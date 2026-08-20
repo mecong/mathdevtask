@@ -1,0 +1,72 @@
+{
+  "gameId": "rubyplay-3x3-classic",
+  "name": "Rubyplay 3x3 Classic Fruit Slot",
+  "reelsCount": 3,
+  "rowsCount": 3,
+  "defaultBet": 10,
+  "paylines": [
+    {
+      "id": 1,
+      "name": "Top Horizontal",
+      "rowOffsets": [0, 0, 0]
+    },
+    {
+      "id": 2,
+      "name": "Middle Horizontal",
+      "rowOffsets": [1, 1, 1]
+    },
+    {
+      "id": 3,
+      "name": "Bottom Horizontal",
+      "rowOffsets": [2, 2, 2]
+    },
+    {
+      "id": 4,
+      "name": "Diagonal Top-Left to Bottom-Right",
+      "rowOffsets": [0, 1, 2]
+    },
+    {
+      "id": 5,
+      "name": "Diagonal Bottom-Left to Top-Right",
+      "rowOffsets": [2, 1, 0]
+    }
+  ],
+  "paytable": {
+    "W1": { "count": 3, "payout": 2000 },
+    "H1": { "count": 3, "payout": 800 },
+    "H2": { "count": 3, "payout": 500 },
+    "H3": { "count": 3, "payout": 80 },
+    "L1": { "count": 3, "payout": 50 },
+    "L2": { "count": 3, "payout": 20 },
+    "L3": { "count": 3, "payout": 15 },
+    "L4": { "count": 3, "payout": 10 },
+    "SCA": { "count": 3, "payout": 200 }
+  },
+  "reels": [
+    [
+      "L4", "L3", "L2", "SCA", "H2", "H2", "H2", "L1", "L1", "L1",
+      "H3", "H1", "H2", "L2", "L2", "L2", "W1", "L3", "L3", "L3",
+      "H3", "H3", "H3", "L4", "L4", "L4", "H3", "L1", "L2", "L4",
+      "SCA", "L3", "L3", "L3", "H3", "L1", "L2", "L3", "SCA", "L2",
+      "L2", "L2", "L2", "H3", "H3", "H3", "L4", "L4", "L4", "SCA",
+      "L1", "L1", "L1", "H1", "L2", "L2", "L2", "SCA", "L3", "L3",
+      "L3"
+    ],
+    [
+      "L4", "L3", "L2", "SCA", "H2", "H2", "H2", "L1", "L1", "L1",
+      "H3", "H1", "H2", "L2", "L2", "L2", "W1", "L3", "L3", "L3",
+      "H3", "H3", "H3", "L4", "L4", "L4", "H3", "L1", "L2", "L4",
+      "SCA", "L3", "L3", "L3", "H3", "L1", "L2", "L3", "SCA", "L2",
+      "L4", "H3", "H3", "H3", "SCA", "L2", "L2", "L2", "L2", "SCA",
+      "L3", "L3", "L3", "H1", "L4", "L4", "L4", "L3"
+    ],
+    [
+      "L4", "L3", "L2", "SCA", "H2", "H2", "H2", "L1", "L1", "L1",
+      "H3", "H1", "H2", "L2", "L2", "L2", "W1", "L3", "L3", "L3",
+      "H3", "H3", "H3", "L4", "L4", "L4", "H3", "L1", "L2", "L4",
+      "H3", "L3", "L3", "L3", "H3", "L1", "L2", "L3", "SCA", "L2",
+      "H2", "H3", "H3", "H3", "L2", "L2", "L2", "L1", "L1", "SCA",
+      "L2", "L2", "L2", "L1"
+    ]
+  ]
+}

@@ -1,0 +1,621 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:x="urn:schemas-microsoft-com:office:excel"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=ProgId content=Excel.Sheet>
+<meta name=Generator content="Microsoft Excel 15">
+<link id=Main-File rel=Main-File href="../Rubyplay%20Math%20Dev%20Task.html">
+<link rel=File-List href=filelist.xml>
+<link rel=Stylesheet href=stylesheet.css>
+<style>
+<!--table
+	{mso-displayed-decimal-separator:"\.";
+	mso-displayed-thousand-separator:"\,";}
+@page
+	{margin:.98in .75in .98in .75in;
+	mso-header-margin:0in;
+	mso-footer-margin:0in;}
+-->
+</style>
+<![if !supportTabStrip]><script language="JavaScript">
+<!--
+function fnUpdateTabs()
+ {
+  if (parent.window.g_iIEVer>=4) {
+   if (parent.document.readyState=="complete"
+    && parent.frames['frTabs'].document.readyState=="complete")
+   parent.fnSetActiveSheet(1);
+  else
+   window.setTimeout("fnUpdateTabs();",150);
+ }
+}
+
+if (window.name!="frSheet")
+ window.location.replace("../Rubyplay%20Math%20Dev%20Task.html");
+else
+ fnUpdateTabs();
+//-->
+</script>
+<![endif]>
+</head>
+
+<body link="#0000EE" vlink="#0000EE">
+
+<table border=0 cellpadding=0 cellspacing=0 width=1313 style='border-collapse:
+ collapse;table-layout:fixed;width:988pt'>
+ <col width=101 span=13 style='width:76pt'>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 width=101 style='height:15.0pt;width:76pt'></td>
+  <td width=101 style='width:76pt'></td>
+  <td width=101 style='width:76pt'></td>
+  <td width=101 style='width:76pt'></td>
+  <td width=101 style='width:76pt'></td>
+  <td width=101 style='width:76pt'></td>
+  <td width=101 style='width:76pt'></td>
+  <td width=101 style='width:76pt'></td>
+  <td width=101 style='width:76pt'></td>
+  <td width=101 style='width:76pt'></td>
+  <td width=101 style='width:76pt'></td>
+  <td width=101 style='width:76pt'></td>
+  <td width=101 style='width:76pt'></td>
+ </tr>
+ <tr height=17 style='height:13.0pt'>
+  <td height=17 style='height:13.0pt'></td>
+  <td class=xl65 colspan=9 style='mso-ignore:colspan'>Create game simulation in
+  java. Simulate 10M rounds to check and prove Return to player (RTP) and to
+  calculate Standard Deviation.</td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+ </tr>
+ <tr height=17 style='height:13.0pt'>
+  <td height=17 style='height:13.0pt'></td>
+  <td class=xl65 colspan=4 style='mso-ignore:colspan'>It is a slot game with
+  predefined reels and symbols on the reels.</td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+ </tr>
+ <tr height=17 style='height:13.0pt'>
+  <td height=17 style='height:13.0pt'></td>
+  <td class=xl65 colspan=5 style='mso-ignore:colspan'>Details of the game
+  configuration can be found on “Task math model” sheet.</td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+ </tr>
+ <tr height=17 style='height:13.0pt'>
+  <td height=17 style='height:13.0pt'></td>
+  <td class=xl65 colspan=10 style='mso-ignore:colspan'>Stop reels. To stop
+  reels, draw a random number between 0 and reel length for each reel, and
+  evaluate the reel picture based on the random indexes.</td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+ </tr>
+ <tr height=17 style='height:13.0pt'>
+  <td height=17 style='height:13.0pt'></td>
+  <td class=xl67>After stopping t<span style='display:none'>he reels, determine
+  the reel picture and evaluate wins.</span></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+ </tr>
+ <tr height=17 style='height:13.0pt'>
+  <td height=17 style='height:13.0pt'></td>
+  <td class=xl65 colspan=6 style='mso-ignore:colspan'>Game is on 3x3 matrix,
+  and paying on 5 paylines only 3 of a kind of the same symbol.</td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+ </tr>
+ <tr height=17 style='height:13.0pt'>
+  <td height=17 style='height:13.0pt'></td>
+  <td class=xl65 colspan=6 style='mso-ignore:colspan'>Each round costs 10, and
+  payout will be determined based on reel picture outcome evaluation.</td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+ </tr>
+ <tr height=17 style='height:13.0pt'>
+  <td height=17 style='height:13.0pt'></td>
+  <td class=xl65 colspan=8 style='mso-ignore:colspan'>RTP is sum of all win
+  amounts from all game rounds, divided by total bet amount (sum of all bets
+  from all game rounds)</td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+ </tr>
+ <tr height=17 style='height:13.0pt'>
+  <td height=17 style='height:13.0pt'></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+ </tr>
+ <tr height=17 style='height:13.0pt'>
+  <td height=17 style='height:13.0pt'></td>
+  <td class=xl65 colspan=3 style='mso-ignore:colspan'>Lets discuss your
+  implementation.</td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+ </tr>
+ <tr height=17 style='height:13.0pt'>
+  <td height=17 style='height:13.0pt'></td>
+  <td class=xl65>Nice to have:</td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+ </tr>
+ <tr height=17 style='height:13.0pt'>
+  <td height=17 style='height:13.0pt'></td>
+  <td class=xl65 colspan=3 style='mso-ignore:colspan'>● Understanding of game
+  rules and logic</td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+ </tr>
+ <tr height=17 style='height:13.0pt'>
+  <td height=17 style='height:13.0pt'></td>
+  <td class=xl65 colspan=3 style='mso-ignore:colspan'>● Solution compiles and
+  works as expected</td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+ </tr>
+ <tr height=20 style='mso-height-source:userset;height:15.0pt'>
+  <td height=20 style='height:15.0pt'></td>
+  <td class=xl65 colspan=2 style='mso-ignore:colspan'>● Clean and refactored</td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+ </tr>
+ <tr height=17 style='height:13.0pt'>
+  <td height=17 style='height:13.0pt'></td>
+  <td class=xl65 colspan=3 style='mso-ignore:colspan'>● The statistics have
+  been extracted correctly</td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+ </tr>
+ <tr height=17 style='height:13.0pt'>
+  <td height=17 style='height:13.0pt'></td>
+  <td class=xl65 colspan=4 style='mso-ignore:colspan'>● Public git repository
+  with code for review (e.g., GitHub)</td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+ </tr>
+ <tr height=17 style='height:13.0pt'>
+  <td height=17 style='height:13.0pt'></td>
+  <td class=xl65 colspan=10 style='mso-ignore:colspan'>● Comments in code if
+  necessary or for difficult places. If you use some special formulas or
+  definitions, you should pin them or add a source link in the code</td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+ </tr>
+ <tr height=17 style='height:13.0pt'>
+  <td height=17 style='height:13.0pt'></td>
+  <td class=xl65 colspan=3 style='mso-ignore:colspan'>● Pin the results of your
+  simulation as a report</td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+ </tr>
+ <tr height=17 style='height:13.0pt'>
+  <td height=17 style='height:13.0pt'></td>
+  <td class=xl65 colspan=4 style='mso-ignore:colspan'>● Covered by unit tests
+  of the difficult parts of the code</td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+ </tr>
+ <tr height=20 style='mso-height-source:userset;height:15.75pt'>
+  <td height=20 style='height:15.75pt'></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+ </tr>
+ <tr height=20 style='mso-height-source:userset;height:15.75pt'>
+  <td height=20 style='height:15.75pt'></td>
+  <td class=xl65 colspan=3 style='mso-ignore:colspan'>Initiatives are welcome
+  but not required:</td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+ </tr>
+ <tr height=20 style='mso-height-source:userset;height:15.75pt'>
+  <td height=20 style='height:15.75pt'></td>
+  <td class=xl65 colspan=4 style='mso-ignore:colspan'>● calculate the
+  confidence interval of the RTP fluctuation;</td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+ </tr>
+ <tr height=20 style='mso-height-source:userset;height:15.75pt'>
+  <td height=20 style='height:15.75pt'></td>
+  <td class=xl65 colspan=2 style='mso-ignore:colspan'>● multithreading
+  simulation;</td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+ </tr>
+ <tr height=20 style='mso-height-source:userset;height:15.75pt'>
+  <td height=20 style='height:15.75pt'></td>
+  <td class=xl66>● other ideas;</td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+ </tr>
+ <tr height=20 style='mso-height-source:userset;height:15.75pt'>
+  <td height=20 style='height:15.75pt'></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+ </tr>
+ <tr height=20 style='mso-height-source:userset;height:15.75pt'>
+  <td height=20 style='height:15.75pt'></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+ </tr>
+ <tr height=20 style='mso-height-source:userset;height:15.75pt'>
+  <td height=20 style='height:15.75pt'></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+ </tr>
+ <tr height=20 style='mso-height-source:userset;height:15.75pt'>
+  <td height=20 style='height:15.75pt'></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+  <td class=xl66></td>
+ </tr>
+ <tr height=20 style='mso-height-source:userset;height:15.75pt'>
+  <td height=20 colspan=13 style='height:15.75pt;mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='mso-height-source:userset;height:15.75pt'>
+  <td height=20 colspan=13 style='height:15.75pt;mso-ignore:colspan'></td>
+ </tr>
+ <tr height=20 style='mso-height-source:userset;height:15.75pt'>
+  <td height=20 colspan=13 style='height:15.75pt;mso-ignore:colspan'></td>
+ </tr>
+ <tr height=500 style='mso-height-source:userset;height:393.75pt;mso-xlrowspan:
+  25'>
+  <td height=500 colspan=13 style='height:393.75pt;mso-ignore:colspan'></td>
+ </tr>
+ <tr height=500 style='mso-height-source:userset;height:393.75pt;mso-xlrowspan:
+  25'>
+  <td height=500 colspan=13 style='height:393.75pt;mso-ignore:colspan'></td>
+ </tr>
+ <tr height=500 style='mso-height-source:userset;height:393.75pt;mso-xlrowspan:
+  25'>
+  <td height=500 colspan=13 style='height:393.75pt;mso-ignore:colspan'></td>
+ </tr>
+ <tr height=500 style='mso-height-source:userset;height:393.75pt;mso-xlrowspan:
+  25'>
+  <td height=500 colspan=13 style='height:393.75pt;mso-ignore:colspan'></td>
+ </tr>
+ <tr height=500 style='mso-height-source:userset;height:393.75pt;mso-xlrowspan:
+  25'>
+  <td height=500 colspan=13 style='height:393.75pt;mso-ignore:colspan'></td>
+ </tr>
+ <tr height=500 style='mso-height-source:userset;height:393.75pt;mso-xlrowspan:
+  25'>
+  <td height=500 colspan=13 style='height:393.75pt;mso-ignore:colspan'></td>
+ </tr>
+ <tr height=500 style='mso-height-source:userset;height:393.75pt;mso-xlrowspan:
+  25'>
+  <td height=500 colspan=13 style='height:393.75pt;mso-ignore:colspan'></td>
+ </tr>
+ <tr height=500 style='mso-height-source:userset;height:393.75pt;mso-xlrowspan:
+  25'>
+  <td height=500 colspan=13 style='height:393.75pt;mso-ignore:colspan'></td>
+ </tr>
+ <tr height=500 style='mso-height-source:userset;height:393.75pt;mso-xlrowspan:
+  25'>
+  <td height=500 colspan=13 style='height:393.75pt;mso-ignore:colspan'></td>
+ </tr>
+ <tr height=500 style='mso-height-source:userset;height:393.75pt;mso-xlrowspan:
+  25'>
+  <td height=500 colspan=13 style='height:393.75pt;mso-ignore:colspan'></td>
+ </tr>
+ <tr height=500 style='mso-height-source:userset;height:393.75pt;mso-xlrowspan:
+  25'>
+  <td height=500 colspan=13 style='height:393.75pt;mso-ignore:colspan'></td>
+ </tr>
+ <tr height=500 style='mso-height-source:userset;height:393.75pt;mso-xlrowspan:
+  25'>
+  <td height=500 colspan=13 style='height:393.75pt;mso-ignore:colspan'></td>
+ </tr>
+ <tr height=500 style='mso-height-source:userset;height:393.75pt;mso-xlrowspan:
+  25'>
+  <td height=500 colspan=13 style='height:393.75pt;mso-ignore:colspan'></td>
+ </tr>
+ <tr height=500 style='mso-height-source:userset;height:393.75pt;mso-xlrowspan:
+  25'>
+  <td height=500 colspan=13 style='height:393.75pt;mso-ignore:colspan'></td>
+ </tr>
+ <tr height=500 style='mso-height-source:userset;height:393.75pt;mso-xlrowspan:
+  25'>
+  <td height=500 colspan=13 style='height:393.75pt;mso-ignore:colspan'></td>
+ </tr>
+ <tr height=500 style='mso-height-source:userset;height:393.75pt;mso-xlrowspan:
+  25'>
+  <td height=500 colspan=13 style='height:393.75pt;mso-ignore:colspan'></td>
+ </tr>
+ <tr height=500 style='mso-height-source:userset;height:393.75pt;mso-xlrowspan:
+  25'>
+  <td height=500 colspan=13 style='height:393.75pt;mso-ignore:colspan'></td>
+ </tr>
+ <tr height=500 style='mso-height-source:userset;height:393.75pt;mso-xlrowspan:
+  25'>
+  <td height=500 colspan=13 style='height:393.75pt;mso-ignore:colspan'></td>
+ </tr>
+ <tr height=500 style='mso-height-source:userset;height:393.75pt;mso-xlrowspan:
+  25'>
+  <td height=500 colspan=13 style='height:393.75pt;mso-ignore:colspan'></td>
+ </tr>
+ <tr height=500 style='mso-height-source:userset;height:393.75pt;mso-xlrowspan:
+  25'>
+  <td height=500 colspan=13 style='height:393.75pt;mso-ignore:colspan'></td>
+ </tr>
+ <tr height=500 style='mso-height-source:userset;height:393.75pt;mso-xlrowspan:
+  25'>
+  <td height=500 colspan=13 style='height:393.75pt;mso-ignore:colspan'></td>
+ </tr>
+ <tr height=500 style='mso-height-source:userset;height:393.75pt;mso-xlrowspan:
+  25'>
+  <td height=500 colspan=13 style='height:393.75pt;mso-ignore:colspan'></td>
+ </tr>
+ <tr height=500 style='mso-height-source:userset;height:393.75pt;mso-xlrowspan:
+  25'>
+  <td height=500 colspan=13 style='height:393.75pt;mso-ignore:colspan'></td>
+ </tr>
+ <tr height=500 style='mso-height-source:userset;height:393.75pt;mso-xlrowspan:
+  25'>
+  <td height=500 colspan=13 style='height:393.75pt;mso-ignore:colspan'></td>
+ </tr>
+ <tr height=500 style='mso-height-source:userset;height:393.75pt;mso-xlrowspan:
+  25'>
+  <td height=500 colspan=13 style='height:393.75pt;mso-ignore:colspan'></td>
+ </tr>
+ <tr height=500 style='mso-height-source:userset;height:393.75pt;mso-xlrowspan:
+  25'>
+  <td height=500 colspan=13 style='height:393.75pt;mso-ignore:colspan'></td>
+ </tr>
+ <tr height=500 style='mso-height-source:userset;height:393.75pt;mso-xlrowspan:
+  25'>
+  <td height=500 colspan=13 style='height:393.75pt;mso-ignore:colspan'></td>
+ </tr>
+ <tr height=500 style='mso-height-source:userset;height:393.75pt;mso-xlrowspan:
+  25'>
+  <td height=500 colspan=13 style='height:393.75pt;mso-ignore:colspan'></td>
+ </tr>
+ <tr height=500 style='mso-height-source:userset;height:393.75pt;mso-xlrowspan:
+  25'>
+  <td height=500 colspan=13 style='height:393.75pt;mso-ignore:colspan'></td>
+ </tr>
+ <tr height=500 style='mso-height-source:userset;height:393.75pt;mso-xlrowspan:
+  25'>
+  <td height=500 colspan=13 style='height:393.75pt;mso-ignore:colspan'></td>
+ </tr>
+ <tr height=500 style='mso-height-source:userset;height:393.75pt;mso-xlrowspan:
+  25'>
+  <td height=500 colspan=13 style='height:393.75pt;mso-ignore:colspan'></td>
+ </tr>
+ <tr height=500 style='mso-height-source:userset;height:393.75pt;mso-xlrowspan:
+  25'>
+  <td height=500 colspan=13 style='height:393.75pt;mso-ignore:colspan'></td>
+ </tr>
+ <tr height=500 style='mso-height-source:userset;height:393.75pt;mso-xlrowspan:
+  25'>
+  <td height=500 colspan=13 style='height:393.75pt;mso-ignore:colspan'></td>
+ </tr>
+ <tr height=500 style='mso-height-source:userset;height:393.75pt;mso-xlrowspan:
+  25'>
+  <td height=500 colspan=13 style='height:393.75pt;mso-ignore:colspan'></td>
+ </tr>
+ <tr height=500 style='mso-height-source:userset;height:393.75pt;mso-xlrowspan:
+  25'>
+  <td height=500 colspan=13 style='height:393.75pt;mso-ignore:colspan'></td>
+ </tr>
+ <tr height=500 style='mso-height-source:userset;height:393.75pt;mso-xlrowspan:
+  25'>
+  <td height=500 colspan=13 style='height:393.75pt;mso-ignore:colspan'></td>
+ </tr>
+ <tr height=500 style='mso-height-source:userset;height:393.75pt;mso-xlrowspan:
+  25'>
+  <td height=500 colspan=13 style='height:393.75pt;mso-ignore:colspan'></td>
+ </tr>
+ <tr height=500 style='mso-height-source:userset;height:393.75pt;mso-xlrowspan:
+  25'>
+  <td height=500 colspan=13 style='height:393.75pt;mso-ignore:colspan'></td>
+ </tr>
+ <tr height=360 style='mso-height-source:userset;height:283.5pt;mso-xlrowspan:
+  18'>
+  <td height=360 colspan=13 style='height:283.5pt;mso-ignore:colspan'></td>
+ </tr>
+ <![if supportMisalignedColumns]>
+ <tr height=0 style='display:none'>
+  <td width=101 style='width:76pt'></td>
+  <td width=101 style='width:76pt'></td>
+  <td width=101 style='width:76pt'></td>
+  <td width=101 style='width:76pt'></td>
+  <td width=101 style='width:76pt'></td>
+  <td width=101 style='width:76pt'></td>
+  <td width=101 style='width:76pt'></td>
+  <td width=101 style='width:76pt'></td>
+  <td width=101 style='width:76pt'></td>
+  <td width=101 style='width:76pt'></td>
+  <td width=101 style='width:76pt'></td>
+  <td width=101 style='width:76pt'></td>
+  <td width=101 style='width:76pt'></td>
+ </tr>
+ <![endif]>
+</table>
+
+</body>
+
+</html>

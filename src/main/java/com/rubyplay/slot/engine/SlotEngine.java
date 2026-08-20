@@ -4,7 +4,6 @@ import com.rubyplay.slot.evaluator.StandardWinEvaluator;
 import com.rubyplay.slot.evaluator.WinEvaluator;
 import com.rubyplay.slot.model.GameConfig;
 import com.rubyplay.slot.model.Grid;
-import com.rubyplay.slot.model.ReelStrip;
 import com.rubyplay.slot.model.SpinOutcome;
 import lombok.AccessLevel;
 import lombok.Getter;

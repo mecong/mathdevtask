@@ -1,7 +1,6 @@
 package com.rubyplay.slot.stats;
 
 import com.rubyplay.slot.model.LineWin;
-import com.rubyplay.slot.model.ScatterWin;
 import com.rubyplay.slot.model.SpinOutcome;
 import com.rubyplay.slot.model.Symbol;
 import lombok.AccessLevel;

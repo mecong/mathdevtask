@@ -61,9 +61,6 @@ public enum Symbol {
         if (this == target) {
             return true;
         }
-        if (this.wild && !target.isScatter()) {
-            return true;
-        }
-        return false;
+        return this.wild && !target.isScatter();
     }
 }

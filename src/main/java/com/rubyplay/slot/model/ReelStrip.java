@@ -39,17 +39,6 @@ public class ReelStrip {
     }
 
     /**
-     * Retrieves the symbol at the given index with circular wrap-around.
-     *
-     * @param index raw index (can be &gt;= length)
-     * @return Symbol at the wrapped position
-     */
-    public Symbol getSymbolAt(int index) {
-        int normalizedIndex = ((index % length) + length) % length;
-        return symbols[normalizedIndex];
-    }
-
-    /**
      * Extracts a window of visible symbols starting from a stop index.
      *
      * @param stopPosition the starting stop index
@@ -62,5 +51,16 @@ public class ReelStrip {
             result[r] = getSymbolAt(stopPosition + r);
         }
         return result;
+    }
+
+    /**
+     * Retrieves the symbol at the given index with circular wrap-around.
+     *
+     * @param index raw index (can be &gt;= length)
+     * @return Symbol at the wrapped position
+     */
+    public Symbol getSymbolAt(int index) {
+        int normalizedIndex = ((index % length) + length) % length;
+        return symbols[normalizedIndex];
     }
 }

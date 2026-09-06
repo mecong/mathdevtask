@@ -7,8 +7,6 @@ import com.rubyplay.slot.model.SpinOutcome;
 import com.rubyplay.slot.stats.SimulationReport;
 import com.rubyplay.slot.stats.SimulationStatsAccumulator;
 import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 
@@ -19,6 +17,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.random.RandomGenerator;
+import java.util.random.RandomGeneratorFactory;
 
 /**
  * High-performance Monte Carlo simulation runner.
@@ -26,13 +25,11 @@ import java.util.random.RandomGenerator;
  * and thread-local statistical accumulation.
  */
 @Slf4j
-@Getter
-@RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-public class VirtualThreadMonteCarloSimulator implements Simulator {
+public record VirtualThreadMonteCarloSimulator(SlotEngine engine, AppProperties properties) implements Simulator {
 
-    SlotEngine engine;
-    AppProperties properties;
+    private static final RandomGeneratorFactory<RandomGenerator.SplittableGenerator> RNG_FACTORY =
+            RandomGeneratorFactory.of("L64X128MixRandom");
 
     public VirtualThreadMonteCarloSimulator(SlotEngine engine) {
         this(engine, new AppProperties());
@@ -40,6 +37,18 @@ public class VirtualThreadMonteCarloSimulator implements Simulator {
 
     @Override
     public SimulationReport runSimulation(long totalRounds) {
+        long seed = System.currentTimeMillis() ^ System.nanoTime();
+        return runSimulation(totalRounds, seed);
+    }
+
+    /**
+     * Executes the simulation with a specified seed for reproducibility.
+     *
+     * @param totalRounds total number of rounds to simulate
+     * @param seed        seed to initialize the root SplittableGenerator
+     * @return SimulationReport with aggregated results
+     */
+    public SimulationReport runSimulation(long totalRounds, long seed) {
         if (totalRounds <= 0) {
             throw new IllegalArgumentException("Total rounds must be positive: " + totalRounds);
         }
@@ -50,27 +59,27 @@ public class VirtualThreadMonteCarloSimulator implements Simulator {
         int parallelism = properties.getSimulationSettings().getThreadPoolSize();
         int batchSize = properties.getSimulationSettings().getBatchSize();
 
-        log.info("Starting Monte Carlo simulation of {} rounds (VirtualThreads={}, Parallelism={}, BatchSize={})",
-                totalRounds, useVirtualThreads, parallelism, batchSize);
+        log.info(
+                "Starting Monte Carlo simulation of {} rounds (VirtualThreads={}, Parallelism={}, BatchSize={}, Seed={})",
+                totalRounds, useVirtualThreads, parallelism, batchSize, seed);
 
         ExecutorService executor = useVirtualThreads
-                ? Executors.newVirtualThreadPerTaskExecutor()
-                : Executors.newFixedThreadPool(parallelism);
+                                   ? Executors.newVirtualThreadPerTaskExecutor()
+                                   : Executors.newFixedThreadPool(parallelism);
 
         long startNanos = System.nanoTime();
 
         try (executor) {
             long remaining = totalRounds;
             List<Future<SimulationStatsAccumulator>> futures = new ArrayList<>();
-            long seed = System.currentTimeMillis() ^ System.nanoTime();
+            RandomGenerator.SplittableGenerator rootRng = RNG_FACTORY.create(seed);
 
-            int taskIndex = 0;
             while (remaining > 0) {
                 long chunkRounds = Math.min(remaining, batchSize);
                 remaining -= chunkRounds;
-                long taskSeed = seed + (taskIndex++ * 31L);
+                RandomGenerator chunkRng = rootRng.split();
 
-                Callable<SimulationStatsAccumulator> task = () -> executeChunk(chunkRounds, taskSeed, betPerRound);
+                Callable<SimulationStatsAccumulator> task = () -> executeChunk(chunkRounds, chunkRng, betPerRound);
                 futures.add(executor.submit(task));
             }
 
@@ -93,9 +102,8 @@ public class VirtualThreadMonteCarloSimulator implements Simulator {
     /**
      * Executes a single batch chunk of spins.
      */
-    private SimulationStatsAccumulator executeChunk(long chunkRounds, long seed, long betPerRound) {
+    private SimulationStatsAccumulator executeChunk(long chunkRounds, RandomGenerator rng, long betPerRound) {
         SimulationStatsAccumulator accumulator = new SimulationStatsAccumulator();
-        RandomGenerator rng = RandomGenerator.of("L64X128MixRandom");
 
         boolean detailedTracking = properties.getReportSettings().isShowDetailedSymbolBreakdown();
 

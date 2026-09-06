@@ -71,6 +71,15 @@ public class OnlineVarianceAccumulator {
     }
 
     /**
+     * Calculates sample standard deviation (s = sqrt(sample_variance)).
+     *
+     * @return sample standard deviation
+     */
+    public double getSampleStandardDeviation() {
+        return Math.sqrt(getSampleVariance());
+    }
+
+    /**
      * Calculates the sample variance (s^2, with Bessel's correction n-1).
      *
      * @return sample variance, or 0 if count &lt; 2
@@ -83,6 +92,15 @@ public class OnlineVarianceAccumulator {
     }
 
     /**
+     * Calculates population standard deviation.
+     *
+     * @return population standard deviation
+     */
+    public double getPopulationStandardDeviation() {
+        return Math.sqrt(getPopulationVariance());
+    }
+
+    /**
      * Calculates the population variance (sigma^2, divided by n).
      *
      * @return population variance
@@ -92,23 +110,5 @@ public class OnlineVarianceAccumulator {
             return 0.0;
         }
         return m2 / count;
-    }
-
-    /**
-     * Calculates sample standard deviation (s = sqrt(sample_variance)).
-     *
-     * @return sample standard deviation
-     */
-    public double getSampleStandardDeviation() {
-        return Math.sqrt(getSampleVariance());
-    }
-
-    /**
-     * Calculates population standard deviation.
-     *
-     * @return population standard deviation
-     */
-    public double getPopulationStandardDeviation() {
-        return Math.sqrt(getPopulationVariance());
     }
 }

@@ -41,9 +41,13 @@ public class StandardWinEvaluator implements WinEvaluator {
 
         // 1. Evaluate Paylines
         for (Payline payline : config.getPaylinesArray()) {
-            Symbol s0 = grid.getSymbol(payline.getRowOffset(0), 0);
-            Symbol s1 = grid.getSymbol(payline.getRowOffset(1), 1);
-            Symbol s2 = grid.getSymbol(payline.getRowOffset(2), 2);
+            int row0 = payline.getRowOffset(0);
+            int row1 = payline.getRowOffset(1);
+            int row2 = payline.getRowOffset(2);
+
+            Symbol s0 = grid.getSymbol(row0, 0);
+            Symbol s1 = grid.getSymbol(row1, 1);
+            Symbol s2 = grid.getSymbol(row2, 2);
 
             LineWin win = evaluateLine(payline.getId(), s0, s1, s2, payTable);
             if (win != null) {
@@ -84,9 +88,13 @@ public class StandardWinEvaluator implements WinEvaluator {
 
         // Fast payline evaluation using direct matrix array access
         for (Payline payline : config.getPaylinesArray()) {
-            Symbol s0 = matrix[payline.getRowOffset(0)][0];
-            Symbol s1 = matrix[payline.getRowOffset(1)][1];
-            Symbol s2 = matrix[payline.getRowOffset(2)][2];
+            int row0 = payline.getRowOffset(0);
+            int row1 = payline.getRowOffset(1);
+            int row2 = payline.getRowOffset(2);
+
+            Symbol s0 = matrix[row0][0];
+            Symbol s1 = matrix[row1][1];
+            Symbol s2 = matrix[row2][2];
 
             totalWin += getLinePayout(s0, s1, s2, payTable);
         }
@@ -108,6 +116,15 @@ public class StandardWinEvaluator implements WinEvaluator {
         return totalWin;
     }
 
+    private long getLinePayout(Symbol s0, Symbol s1, Symbol s2, PayTable payTable) {
+        for (Symbol candidate : LINE_CANDIDATE_ORDER) {
+            if (s0.matches(candidate) && s1.matches(candidate) && s2.matches(candidate)) {
+                return payTable.getPayout(candidate, 3);
+            }
+        }
+        return 0L;
+    }
+
     private LineWin evaluateLine(int lineId, Symbol s0, Symbol s1, Symbol s2, PayTable payTable) {
         for (Symbol candidate : LINE_CANDIDATE_ORDER) {
             if (s0.matches(candidate) && s1.matches(candidate) && s2.matches(candidate)) {
@@ -126,14 +143,5 @@ public class StandardWinEvaluator implements WinEvaluator {
             }
         }
         return null;
-    }
-
-    private long getLinePayout(Symbol s0, Symbol s1, Symbol s2, PayTable payTable) {
-        for (Symbol candidate : LINE_CANDIDATE_ORDER) {
-            if (s0.matches(candidate) && s1.matches(candidate) && s2.matches(candidate)) {
-                return payTable.getPayout(candidate, 3);
-            }
-        }
-        return 0L;
     }
 }

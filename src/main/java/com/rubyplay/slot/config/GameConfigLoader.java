@@ -53,27 +53,6 @@ public class GameConfigLoader {
         }
     }
 
-    /**
-     * Loads GameConfig from an external JSON file.
-     *
-     * @param filePath path to JSON file
-     * @return parsed GameConfig
-     */
-    public GameConfig loadFromFile(Path filePath) {
-        log.debug("Loading game configuration from file: {}", filePath);
-        try {
-            File file = filePath.toFile();
-            if (!file.exists()) {
-                throw new IllegalArgumentException("Configuration file does not exist: " + filePath);
-            }
-            JsonNode root = objectMapper.readTree(file);
-            return parseJsonNode(root);
-        } catch (Exception e) {
-            log.error("Failed to load config from file '{}': {}", filePath, e.getMessage(), e);
-            throw new IllegalStateException("Failed to parse game config from file: " + filePath, e);
-        }
-    }
-
     private GameConfig parseJsonNode(JsonNode root) {
         String gameId = root.path("gameId").asText("slot-game");
         String name = root.path("name").asText("Slot Game");
@@ -140,5 +119,26 @@ public class GameConfigLoader {
                 .paylines(paylines)
                 .payTable(new PayTable(payTableMap))
                 .build();
+    }
+
+    /**
+     * Loads GameConfig from an external JSON file.
+     *
+     * @param filePath path to JSON file
+     * @return parsed GameConfig
+     */
+    public GameConfig loadFromFile(Path filePath) {
+        log.debug("Loading game configuration from file: {}", filePath);
+        try {
+            File file = filePath.toFile();
+            if (!file.exists()) {
+                throw new IllegalArgumentException("Configuration file does not exist: " + filePath);
+            }
+            JsonNode root = objectMapper.readTree(file);
+            return parseJsonNode(root);
+        } catch (Exception e) {
+            log.error("Failed to load config from file '{}': {}", filePath, e.getMessage(), e);
+            throw new IllegalStateException("Failed to parse game config from file: " + filePath, e);
+        }
     }
 }

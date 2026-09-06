@@ -35,4 +35,24 @@ class VirtualThreadMonteCarloSimulatorSpec extends Specification {
         theoreticalRtp >= report.getCi99Lower()
         theoreticalRtp <= report.getCi99Upper()
     }
+
+    def "should produce identical results when executed with the same seed"() {
+        given: "game engine and virtual thread simulator"
+        def config = DefaultGameConfigFactory.createDefaultConfig()
+        def engine = new SlotEngine(config)
+        def properties = new AppProperties()
+        properties.getSimulationSettings().setBatchSize(10_000)
+        def simulator = new VirtualThreadMonteCarloSimulator(engine, properties)
+        long fixedSeed = 123456789L
+
+        when: "running two simulations with the same fixed seed"
+        def report1 = simulator.runSimulation(100_000L, fixedSeed)
+        def report2 = simulator.runSimulation(100_000L, fixedSeed)
+
+        then: "both runs produce identical totals and RTP"
+        report1.getTotalRounds() == report2.getTotalRounds()
+        report1.getTotalWinAmount() == report2.getTotalWinAmount()
+        report1.getWinningRoundsCount() == report2.getWinningRoundsCount()
+        report1.getRtpPercentage() == report2.getRtpPercentage()
+    }
 }

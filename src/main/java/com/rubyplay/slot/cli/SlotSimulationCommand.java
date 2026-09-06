@@ -32,7 +32,7 @@ public class SlotSimulationCommand implements Callable<Integer> {
             description = "Number of rounds to simulate (default: 10,000,000).",
             defaultValue = "10000000"
     )
-    private long rounds = 10_000_000L;
+    private final long rounds = 10_000_000L;
 
     @Option(
             names = {"-t", "--threads"},
@@ -46,7 +46,7 @@ public class SlotSimulationCommand implements Callable<Integer> {
             description = "Use Java Virtual Threads (default: true). Use --no-virtual-threads for platform threads.",
             defaultValue = "true"
     )
-    private boolean virtualThreads = true;
+    private final boolean virtualThreads = true;
 
     @Option(
             names = {"-e", "--exact"},
@@ -66,7 +66,7 @@ public class SlotSimulationCommand implements Callable<Integer> {
             description = "Track detailed per-symbol hit and payout statistics (default: true).",
             defaultValue = "true"
     )
-    private boolean detailed = true;
+    private final boolean detailed = true;
 
     @Override
     public Integer call() {

@@ -6,8 +6,6 @@ import com.rubyplay.slot.model.GameConfig;
 import com.rubyplay.slot.model.SpinOutcome;
 import com.rubyplay.slot.stats.SimulationReport;
 import com.rubyplay.slot.stats.SimulationStatsAccumulator;
-import lombok.AccessLevel;
-import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
@@ -25,7 +23,6 @@ import java.util.random.RandomGeneratorFactory;
  * and thread-local statistical accumulation.
  */
 @Slf4j
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public record VirtualThreadMonteCarloSimulator(SlotEngine engine, AppProperties properties) implements Simulator {
 
     private static final RandomGeneratorFactory<RandomGenerator.SplittableGenerator> RNG_FACTORY =

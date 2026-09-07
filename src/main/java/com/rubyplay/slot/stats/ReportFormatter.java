@@ -37,28 +37,28 @@ public class ReportFormatter {
                                 intFormat.format(report.getTotalWagerAmount())));
         sb.append(String.format(" %-30s : %s credits%n", "Total Payout / Win",
                                 intFormat.format(report.getTotalWinAmount())));
-        sb.append(String.format(" %-30s : %s (%.2f%%)%n", "Winning Rounds (Hits)",
+        sb.append(String.format(Locale.US, " %-30s : %s (%.2f%%)%n", "Winning Rounds (Hits)",
                                 intFormat.format(report.getWinningRoundsCount()), report.getHitFrequencyPercentage()));
         sb.append(THIN_LINE).append(NL);
 
-        sb.append(String.format(" %-30s : %.6f%%%n", "Actual Return To Player (RTP)", report.getRtpPercentage()));
-        sb.append(String.format(" %-30s : %.6f credits%n", "Mean Payout per Round", report.getMeanWinPerRound()));
-        sb.append(String.format(" %-30s : %.6f credits%n", "Sample Variance (s^2)", report.getVariance()));
-        sb.append(String.format(" %-30s : %.6f credits%n", "Standard Deviation (Credits)",
+        sb.append(String.format(Locale.US, " %-30s : %.6f%%%n", "Actual Return To Player (RTP)", report.getRtpPercentage()));
+        sb.append(String.format(Locale.US, " %-30s : %.6f credits%n", "Mean Payout per Round", report.getMeanWinPerRound()));
+        sb.append(String.format(Locale.US, " %-30s : %.6f credits%n", "Sample Variance (s^2)", report.getVariance()));
+        sb.append(String.format(Locale.US, " %-30s : %.6f credits%n", "Standard Deviation (Credits)",
                                 report.getStandardDeviationCredits()));
-        sb.append(String.format(" %-30s : %.6f bet units%n", "Standard Deviation (Bet Units)",
+        sb.append(String.format(Locale.US, " %-30s : %.6f bet units%n", "Standard Deviation (Bet Units)",
                                 report.getStandardDeviationBetUnits()));
-        sb.append(String.format(" %-30s : %.6f credits%n", "Standard Error of Mean (SE)", report.getStandardError()));
+        sb.append(String.format(Locale.US, " %-30s : %.6f credits%n", "Standard Error of Mean (SE)", report.getStandardError()));
         sb.append(THIN_LINE).append(NL);
 
         sb.append(" Statistical Confidence Intervals for RTP:").append(NL);
-        sb.append(String.format("   95%% Confidence Interval     : [%.4f%%  -  %.4f%%]%n",
+        sb.append(String.format(Locale.US, "   95%% Confidence Interval     : [%.4f%%  -  %.4f%%]%n",
                                 report.getCi95Lower(), report.getCi95Upper()));
-        sb.append(String.format("   99%% Confidence Interval     : [%.4f%%  -  %.4f%%]%n",
+        sb.append(String.format(Locale.US, "   99%% Confidence Interval     : [%.4f%%  -  %.4f%%]%n",
                                 report.getCi99Lower(), report.getCi99Upper()));
         sb.append(THIN_LINE).append(NL);
 
-        sb.append(String.format(" %-30s : %d ms (%.2f s)%n", "Simulation Wall Time",
+        sb.append(String.format(Locale.US, " %-30s : %d ms (%.2f s)%n", "Simulation Wall Time",
                                 report.getDurationMillis(), report.getDurationMillis() / 1000.0));
         sb.append(String.format(" %-30s : %s spins/sec%n", "Simulation Throughput",
                                 intFormat.format((long) report.getSpinsPerSecond())));
@@ -72,7 +72,7 @@ public class ReportFormatter {
                 sb.append(THIN_LINE).append(NL);
 
                 for (SymbolStat stat : report.getSymbolBreakdowns()) {
-                    sb.append(String.format(" %-6s | %-12s | %-12s | %-15.7e | %-12s | %6.2f%%%n",
+                    sb.append(String.format(Locale.US, " %-6s | %-12s | %-12s | %-15.7f | %-12s | %6.2f%%%n",
                                             stat.symbol().getCode(),
                                             stat.symbol().getDisplayName(),
                                             intFormat.format(stat.hitCount()),

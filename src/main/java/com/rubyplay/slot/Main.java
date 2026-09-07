@@ -10,7 +10,7 @@ import picocli.CommandLine;
 @UtilityClass
 public class Main {
 
-    static void main(String[] args) {
+    public static void main(String[] args) {
         int exitCode = new CommandLine(new SlotSimulationCommand()).execute(args);
         if (exitCode != 0) {
             System.exit(exitCode);

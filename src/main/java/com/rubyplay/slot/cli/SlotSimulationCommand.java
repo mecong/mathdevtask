@@ -8,6 +8,7 @@ import com.rubyplay.slot.simulation.ExhaustiveCombinatorialValidator;
 import com.rubyplay.slot.simulation.VirtualThreadMonteCarloSimulator;
 import com.rubyplay.slot.stats.ReportFormatter;
 import com.rubyplay.slot.stats.SimulationReport;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
@@ -19,12 +20,13 @@ import java.util.concurrent.Callable;
  * Command-line interface for executing slot game simulations and mathematical validations.
  */
 @Slf4j
+@Getter
 @Command(
         name = "slot-simulator",
         mixinStandardHelpOptions = true,
         version = "1.0.0",
         description = "High-performance 3x3 slot game simulator and statistical validator."
-)
+    )
 public class SlotSimulationCommand implements Callable<Integer> {
 
     @Option(
@@ -44,7 +46,8 @@ public class SlotSimulationCommand implements Callable<Integer> {
             names = {"-v", "--virtual-threads"},
             negatable = true,
             description = "Use Java Virtual Threads (default: true). Use --no-virtual-threads for platform threads.",
-            defaultValue = "true"
+            defaultValue = "true",
+            fallbackValue = "true"
     )
     private boolean virtualThreads = true;
 
@@ -64,7 +67,8 @@ public class SlotSimulationCommand implements Callable<Integer> {
             names = {"-d", "--detailed"},
             negatable = true,
             description = "Track detailed per-symbol hit and payout statistics (default: true).",
-            defaultValue = "true"
+            defaultValue = "true",
+            fallbackValue = "true"
     )
     private boolean detailed = true;
 

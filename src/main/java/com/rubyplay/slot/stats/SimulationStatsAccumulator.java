@@ -28,6 +28,7 @@ public class SimulationStatsAccumulator {
     final long[] symbolHits;
     final long[] symbolPayouts;
     final OnlineVarianceAccumulator varianceAccumulator;
+
     long totalRounds;
     long totalWagerAmount;
     long totalWinAmount;

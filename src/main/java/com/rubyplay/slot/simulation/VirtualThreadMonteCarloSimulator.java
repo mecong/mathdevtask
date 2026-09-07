@@ -90,6 +90,10 @@ public record VirtualThreadMonteCarloSimulator(SlotEngine engine, AppProperties 
             log.info("Simulation completed in {} ms", durationNanos / 1_000_000L);
 
             return globalAccumulator.buildReport(betPerRound, durationNanos);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            log.error("Simulation interrupted: {}", e.getMessage(), e);
+            throw new RuntimeException("Simulation execution interrupted", e);
         } catch (Exception e) {
             log.error("Simulation failed: {}", e.getMessage(), e);
             throw new RuntimeException("Simulation execution failed", e);

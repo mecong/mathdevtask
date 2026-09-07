@@ -18,11 +18,12 @@ import java.util.random.RandomGenerator;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class SlotEngine {
 
-    GameConfig config;
-    WinEvaluator evaluator;
-    int reelsCount;
     int rowsCount;
+    int reelsCount;
+
+    GameConfig config;
     int[] reelLengths;
+    WinEvaluator evaluator;
 
     public SlotEngine(GameConfig config) {
         this(config, new StandardWinEvaluator());
@@ -80,8 +81,7 @@ public class SlotEngine {
      */
     public long spinRandomFast(RandomGenerator random) {
         int[] stops = generateRandomStops(random);
-        Grid grid = Grid.fromStopPositions(config.getReelsArray(), stops, rowsCount);
-        return evaluator.evaluateFastPayout(grid, config);
+        return evaluateStopsFast(stops);
     }
 
     /**

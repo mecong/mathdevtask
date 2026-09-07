@@ -16,9 +16,9 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class AppProperties {
 
-    SimulationSettings simulationSettings = new SimulationSettings();
     GameSettings gameSettings = new GameSettings();
     ReportSettings reportSettings = new ReportSettings();
+    SimulationSettings simulationSettings = new SimulationSettings();
 
     @Getter
     @Setter

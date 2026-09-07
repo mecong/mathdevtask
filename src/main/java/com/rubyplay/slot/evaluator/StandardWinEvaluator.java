@@ -99,21 +99,27 @@ public class StandardWinEvaluator implements WinEvaluator {
             totalWin += getLinePayout(s0, s1, s2, payTable);
         }
 
-        // Fast scatter count evaluation
+        // Fast scatter evaluation with early exit once 3 scatters are found
+        if (hasScatterWin(matrix)) {
+            totalWin += payTable.getPayout(Symbol.SCA, 3);
+        }
+
+        return totalWin;
+    }
+
+    private boolean hasScatterWin(Symbol[][] matrix) {
         int scatterCount = 0;
         for (int r = 0; r < 3; r++) {
             for (int c = 0; c < 3; c++) {
                 if (matrix[r][c] == Symbol.SCA) {
                     scatterCount++;
+                    if (scatterCount >= 3) {
+                        return true;
+                    }
                 }
             }
         }
-
-        if (scatterCount >= 3) {
-            totalWin += payTable.getPayout(Symbol.SCA, 3);
-        }
-
-        return totalWin;
+        return false;
     }
 
     private long getLinePayout(Symbol s0, Symbol s1, Symbol s2, PayTable payTable) {

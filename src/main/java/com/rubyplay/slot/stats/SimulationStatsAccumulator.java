@@ -11,6 +11,9 @@ import lombok.experimental.FieldDefaults;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.util.concurrent.TimeUnit.NANOSECONDS;
+import static java.util.concurrent.TimeUnit.SECONDS;
+
 /**
  * Mutable statistical accumulator that collects spin data and computes comprehensive metrics.
  * Designed for efficient thread-local accumulation and subsequent reduction.
@@ -22,36 +25,20 @@ public class SimulationStatsAccumulator {
 
     private static final double Z_95 = 1.959963984540054; // 95% Confidence Interval Z-score
     private static final double Z_99 = 2.5758293035489004; // 99% Confidence Interval Z-score
+    final long[] symbolHits;
+    final long[] symbolPayouts;
+    final OnlineVarianceAccumulator varianceAccumulator;
 
     long totalRounds;
     long totalWagerAmount;
     long totalWinAmount;
     long winningRoundsCount;
-    final long[] symbolHits;
-    final long[] symbolPayouts;
-    final OnlineVarianceAccumulator varianceAccumulator;
 
     public SimulationStatsAccumulator() {
         int symbolCount = Symbol.values().length;
         this.symbolHits = new long[symbolCount];
         this.symbolPayouts = new long[symbolCount];
         this.varianceAccumulator = new OnlineVarianceAccumulator();
-    }
-
-    /**
-     * Fast record for high-speed simulation loop where only round payout is collected.
-     *
-     * @param winAmount payout in credits for the round
-     * @param betAmount wager amount in credits
-     */
-    public void recordRound(long winAmount, long betAmount) {
-        totalRounds++;
-        totalWagerAmount += betAmount;
-        totalWinAmount += winAmount;
-        if (winAmount > 0) {
-            winningRoundsCount++;
-        }
-        varianceAccumulator.add(winAmount);
     }
 
     /**
@@ -75,6 +62,22 @@ public class SimulationStatsAccumulator {
             symbolHits[ordinal]++;
             symbolPayouts[ordinal] += scatterWin.payout();
         });
+    }
+
+    /**
+     * Fast record for high-speed simulation loop where only round payout is collected.
+     *
+     * @param winAmount payout in credits for the round
+     * @param betAmount wager amount in credits
+     */
+    public void recordRound(long winAmount, long betAmount) {
+        totalRounds++;
+        totalWagerAmount += betAmount;
+        totalWinAmount += winAmount;
+        if (winAmount > 0) {
+            winningRoundsCount++;
+        }
+        varianceAccumulator.add(winAmount);
     }
 
     /**
@@ -112,8 +115,8 @@ public class SimulationStatsAccumulator {
         }
 
         double rtpPercentage = totalWagerAmount > 0
-                ? ((double) totalWinAmount / totalWagerAmount) * 100.0
-                : 0.0;
+                               ? ((double) totalWinAmount / totalWagerAmount) * 100.0
+                               : 0.0;
 
         double meanWinPerRound = (double) totalWinAmount / totalRounds;
         double hitFrequencyPercentage = ((double) winningRoundsCount / totalRounds) * 100.0;
@@ -133,8 +136,9 @@ public class SimulationStatsAccumulator {
         double ci99Lower = rtpPercentage - (Z_99 * seRtp);
         double ci99Upper = rtpPercentage + (Z_99 * seRtp);
 
-        long durationMillis = durationNanos / 1_000_000L;
-        double seconds = durationNanos / 1_000_000_000.0;
+        long durationMillis = NANOSECONDS.toMillis(durationNanos);
+        // Fractional seconds: avoid TimeUnit.toSeconds which truncates to long
+        double seconds = (double) durationNanos / SECONDS.toNanos(1);
         double spinsPerSecond = seconds > 0 ? totalRounds / seconds : 0.0;
 
         List<SymbolStat> symbolBreakdowns = new ArrayList<>();
@@ -147,12 +151,12 @@ public class SimulationStatsAccumulator {
             double retPct = totalWagerAmount > 0 ? ((double) payout / totalWagerAmount) * 100.0 : 0.0;
 
             symbolBreakdowns.add(SymbolStat.builder()
-                    .symbol(sym)
-                    .hitCount(hits)
-                    .totalPayout(payout)
-                    .probability(prob)
-                    .returnPercentage(retPct)
-                    .build());
+                                         .symbol(sym)
+                                         .hitCount(hits)
+                                         .totalPayout(payout)
+                                         .probability(prob)
+                                         .returnPercentage(retPct)
+                                         .build());
         }
 
         return SimulationReport.builder()

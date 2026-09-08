@@ -38,7 +38,7 @@ public class ExhaustiveCombinatorialValidator {
         long betPerRound = config.getDefaultBet();
 
         log.info("Running exhaustive validation over all {} possible stop combinations ({}x{}x{})",
-                totalCombinations, len0, len1, len2);
+                 totalCombinations, len0, len1, len2);
 
         long startNanos = System.nanoTime();
         SimulationStatsAccumulator accumulator = new SimulationStatsAccumulator();

@@ -18,11 +18,12 @@ import java.util.random.RandomGenerator;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class SlotEngine {
 
-    GameConfig config;
-    WinEvaluator evaluator;
-    int reelsCount;
     int rowsCount;
+    int reelsCount;
+
+    GameConfig config;
     int[] reelLengths;
+    WinEvaluator evaluator;
 
     public SlotEngine(GameConfig config) {
         this(config, new StandardWinEvaluator());
@@ -43,6 +44,25 @@ public class SlotEngine {
     }
 
     /**
+     * Executes a single random spin using the provided random generator.
+     *
+     * @param random source of randomness
+     * @return evaluated SpinOutcome
+     */
+    public SpinOutcome spinRandom(RandomGenerator random) {
+        int[] stops = generateRandomStops(random);
+        return spin(stops);
+    }
+
+    private int[] generateRandomStops(RandomGenerator random) {
+        int[] stops = new int[reelsCount];
+        for (int i = 0; i < reelsCount; i++) {
+            stops[i] = random.nextInt(reelLengths[i]);
+        }
+        return stops;
+    }
+
+    /**
      * Executes a spin with specified reel stop positions.
      *
      * @param stopPositions array of reel stop indices
@@ -54,17 +74,6 @@ public class SlotEngine {
     }
 
     /**
-     * Executes a single random spin using the provided random generator.
-     *
-     * @param random source of randomness
-     * @return evaluated SpinOutcome
-     */
-    public SpinOutcome spinRandom(RandomGenerator random) {
-        int[] stops = generateRandomStops(random);
-        return spin(stops);
-    }
-
-    /**
      * High-speed spin evaluation returning only the win amount.
      *
      * @param random source of randomness
@@ -72,8 +81,7 @@ public class SlotEngine {
      */
     public long spinRandomFast(RandomGenerator random) {
         int[] stops = generateRandomStops(random);
-        Grid grid = Grid.fromStopPositions(config.getReelsArray(), stops, rowsCount);
-        return evaluator.evaluateFastPayout(grid, config);
+        return evaluateStopsFast(stops);
     }
 
     /**
@@ -85,13 +93,5 @@ public class SlotEngine {
     public long evaluateStopsFast(int[] stops) {
         Grid grid = Grid.fromStopPositions(config.getReelsArray(), stops, rowsCount);
         return evaluator.evaluateFastPayout(grid, config);
-    }
-
-    private int[] generateRandomStops(RandomGenerator random) {
-        int[] stops = new int[reelsCount];
-        for (int i = 0; i < reelsCount; i++) {
-            stops[i] = random.nextInt(reelLengths[i]);
-        }
-        return stops;
     }
 }

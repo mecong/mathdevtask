@@ -37,9 +37,9 @@ public class Grid {
     /**
      * Constructs a Grid from reel strips and stop positions.
      *
-     * @param reels          array of ReelStrip objects
-     * @param stopPositions  array of stop indices for each reel
-     * @param rowCount       number of visible rows
+     * @param reels         array of ReelStrip objects
+     * @param stopPositions array of stop indices for each reel
+     * @param rowCount      number of visible rows
      */
     public static Grid fromStopPositions(ReelStrip[] reels, int[] stopPositions, int rowCount) {
         int reelsCount = reels.length;
